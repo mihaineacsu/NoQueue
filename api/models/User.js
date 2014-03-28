@@ -7,7 +7,7 @@
 
 module.exports = {
 
-	attributes: {
+  attributes: {
     username: {
       type: 'STRING',
       required: true,
@@ -17,7 +17,13 @@ module.exports = {
       type: 'STRING',
       minLength: 6,
       required: true,
+    },
+
+    // add a reference to Queue
+    queues: {
+      collection: 'queue',
+      via: 'users'
     }
-	}
+  }
 
 };

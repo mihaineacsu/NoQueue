@@ -7,9 +7,18 @@
 
 module.exports = {
 
-	attributes: {
+  attributes: {
+    'venue': {
+      type: 'STRING'
+    },
 
+    // add a reference to User 
+    users: {
+      collection : 'user',
+      via: 'queues',
+      dominant: true
+    }
 
-	}
+  }
 
 };

@@ -29,6 +29,22 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+  'post /queue/:queueid/user/:userid': {
+    controller: 'queue',
+    action: 'addUserToQueue' 
+  },
+  'get /queue/:queueid/user/:userid': {
+    controller: 'queue',
+    action: 'getUserStateInQueue' 
+  },
+  'put /queue/:queueid/user/:userid': {
+    controller: 'queue',
+    action: 'updateUserStateInQueue' 
+  },
+  'delete /queue/:queueid/user/:userid': {
+    controller: 'queue',
+    action: 'removeUserFromQueue' 
+  },
 
 
   // Custom routes here...
