@@ -44,6 +44,7 @@ module.exports.adapters = {
 
   mongo: {
       module   : 'sails-mongo',
-      url      : 'mongodb://nodejitsu:ff65af90fc17440ce2460bcc624b4557@troup.mongohq.com:10073/nodejitsudb9655864997'
+      //url      : 'mongodb://nodejitsu:ff65af90fc17440ce2460bcc624b4557@troup.mongohq.com:10073/nodejitsudb9655864997'
+      url      : 'mongodb://nodejitsu_def:6f10v8gtorfv0r1bns8tkr20bt@ds029950.mongolab.com:29950/nodejitsu_def_nodejitsudb8863764081'
   }
 };
