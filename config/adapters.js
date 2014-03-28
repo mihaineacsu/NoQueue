@@ -44,10 +44,6 @@ module.exports.adapters = {
 
   mongo: {
       module   : 'sails-mongo',
-      host     : 'localhost',
-      port     : 27017,
-      user     : '',
-      password : '',
-      database : 'sails-social-auth'
+      url      : 'mongodb://nodejitsu:ff65af90fc17440ce2460bcc624b4557@troup.mongohq.com:10073/nodejitsudb9655864997'
   }
 };

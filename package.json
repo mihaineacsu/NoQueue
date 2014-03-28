@@ -1,7 +1,7 @@
 {
   "name": "sails-social-auth-example",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.0-6",
   "description": "a Sails application",
   "dependencies": {
     "sails": "0.9.8",
@@ -22,5 +22,9 @@
   "main": "app.js",
   "repository": "",
   "author": "",
-  "license": ""
+  "license": "",
+  "subdomain": "def-NoQueue",
+  "engines": {
+    "node": "0.10.x"
+  }
 }
