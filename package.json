@@ -1,7 +1,7 @@
 {
-  "name": "sails-social-auth-example",
+  "name": "noqueue",
   "private": true,
-  "version": "0.0.0-6",
+  "version": "0.0.0",
   "description": "a Sails application",
   "dependencies": {
     "bytes": "^0.3.0",
