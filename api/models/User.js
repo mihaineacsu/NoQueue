@@ -8,8 +8,6 @@
 
 module.exports = {
 
-    adapter: 'mongo',
-
     attributes	: {
         provider: 'STRING',
         uid: 'INTEGER',
