@@ -10,8 +10,8 @@ var verifyHandler = function (token, tokenSecret, profile, done) {
 
     User.findOne({
       or: [
-        {uid: parseInt(profile.id)},
-        {uid: profile.id}
+        {id: parseInt(profile.id)},
+        {id: profile.id}
       ]
     }).done(function (err, user) {
       if (user) {
@@ -78,7 +78,7 @@ module.exports = {
       passport.use(new FacebookStrategy({
         clientID: "1456628884572134",
         clientSecret: "94eba1f3201fcc6d394295e2d72e6160",
-        callbackURL: "http://localhost:1337"
+        callbackURL: "http://localhost:1337/auth/result"
       },
       verifyHandler));
 

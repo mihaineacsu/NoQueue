@@ -43,6 +43,12 @@ module.exports = {
     })(req, res);
   },
 
+  result: function(req, res) {
+    console.log(req);
+    console.log(req.user);
+    res.json(req.user);
+  },
+
 
   _config: {}
 };
