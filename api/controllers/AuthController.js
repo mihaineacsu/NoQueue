@@ -44,8 +44,7 @@ module.exports = {
   },
 
   result: function(req, res) {
-    console.log(req);
-    console.log(req.user);
+    passport.authenticate('facebook', { failureRedirect: '/' });
     res.json(req.user);
   },
 

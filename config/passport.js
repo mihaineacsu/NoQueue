@@ -6,6 +6,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 //var bcrypt = require('bcrypt');
 
 var verifyHandler = function (token, tokenSecret, profile, done) {
+  console.log('foo');
   process.nextTick(function () {
 
     User.findOne({
@@ -78,7 +79,8 @@ module.exports = {
       passport.use(new FacebookStrategy({
         clientID: "1456628884572134",
         clientSecret: "94eba1f3201fcc6d394295e2d72e6160",
-        callbackURL: "http://localhost:1337/auth/result"
+        callbackURL: "http://localhost:1337/auth/result",
+        passReqToCallback: true
       },
       verifyHandler));
 
