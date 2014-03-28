@@ -13,6 +13,9 @@ module.exports = {
       required: true,
       maxLength: 20,
     },
+    email: {
+      type: 'EMAIL'
+    },
     password: {
       type: 'STRING',
       minLength: 6,
@@ -23,7 +26,31 @@ module.exports = {
     queues: {
       collection: 'queue',
       via: 'users'
+    },
+    //Override toJSON method to remove password from API
+    toJSON: function() {
+      var obj = this.toObject();
+      // Remove the password object value
+      delete obj.password;
+      // return the new object without password
+      return obj;
     }
-  }
+  },
+
+//TODO figure out why bcrypt doesn't install
+//  beforeCreate: function(values, next) {
+//    var bcrypt = require('bcrypt');
+//
+//    bcrypt.genSalt(10, function(err, salt) {
+//      if(err) return next(err);
+//
+//      bcrypt.hash(values.password, salt, function(err, hash) {
+//        if(err) return next(err);
+//
+//        values.password = hash;
+//        next();
+//      });
+//    });
+//  }
 
 };

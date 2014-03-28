@@ -1,10 +1,11 @@
 {
   "name": "NoQueueClean",
   "private": true,
-  "version": "0.0.0-2",
+  "version": "0.0.0-4",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "bindings": "^1.1.1",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.4.1",
@@ -21,6 +22,8 @@
     "include-all": "~0.1.3",
     "lodash": "^2.4.1",
     "passport": "^0.2.0",
+    "passport-facebook": "^1.0.3",
+    "passport-local": "^1.0.0",
     "rc": "~0.3.3",
     "sails": "~0.10.0-rc4",
     "sails-disk": "~0.10.0"

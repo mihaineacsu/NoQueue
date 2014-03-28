@@ -29,6 +29,11 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+
+  'get /login' : "AuthController.login",
+  'post /login': 'AuthController.login',
+  'get /logout': 'AuthController.logout',
+
   'post /queue/:queueid/user/:userid': {
     controller: 'queue',
     action: 'addUserToQueue' 
