@@ -20,11 +20,15 @@
 
 module.exports.connections = {
 
-  'default': 'mongo',
+ 'default': 'mongoose',
 
-  mongo: {
-    adapter:'sails-mongo',
-    url: 'mongodb://nodejitsu_def:6f10v8gtorfv0r1bns8tkr20bt@ds029950.mongolab.com:29950/nodejitsu_def_nodejitsudb8863764081'
+  // sails v.0.9.0
+  mongoose: {
+    module   : 'sails-mongoose',
+    host     : 'ds029950.mongolab.com',
+    user     : 'nodejitsu_def',
+    password : 'f5aqv7ogjnciqfqoi2sq40vifk',
+    database : 'my_database'
   },
 
   // Local disk storage for DEVELOPMENT ONLY
@@ -32,7 +36,7 @@ module.exports.connections = {
   // Installed by default.
   //
   localDiskDb: {
-    adapter: 'sails-disk'
+    module: 'sails-disk'
   },
 
   // MySQL is the world's most popular relational database.
@@ -42,7 +46,7 @@ module.exports.connections = {
   // npm install sails-mysql
   //
   someMysqlServer: {
-    adapter : 'sails-mysql',
+    module : 'sails-mysql',
     host    : 'YOUR_MYSQL_SERVER_HOSTNAME_OR_IP_ADDRESS',
     user    : 'YOUR_MYSQL_USER',
     password: 'YOUR_MYSQL_PASSWORD', 
@@ -56,7 +60,7 @@ module.exports.connections = {
   // npm install sails-mongo
   //
   someMongodbServer: {
-    adapter   : 'sails-mongo',
+    module   : 'sails-mongo',
     host      : 'localhost',
     port      : 27017,
     user      : 'username',
@@ -71,7 +75,7 @@ module.exports.connections = {
   // npm install sails-postgresql
   //
   somePostgresqlServer: {
-    adapter   : 'sails-postgresql',
+    module   : 'sails-postgresql',
     host      : 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
     user      : 'YOUR_POSTGRES_USER',
     password  : 'YOUR_POSTGRES_PASSWORD', 

@@ -24,7 +24,8 @@
     "passport-github": "0.1.5",
     "passport-google-oauth": "0.1.5",
     "sails": "0.10.0-rc4",
-    "sails-disk": "~0.10.0"
+    "sails-disk": "~0.10.0",
+    "sails-mongoose": "0.0.3"
   },
   "scripts": {
     "start": "node app.js",
