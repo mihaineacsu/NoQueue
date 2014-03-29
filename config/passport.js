@@ -1,91 +1,55 @@
-var passport    = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+/**
+ * Passport configuration
+ *
+ * This if the configuration for your Passport.js setup and it where you'd
+ * define the authentication strategies you want your application to employ.
+ *
+ * I have tested the service with all of the providers listed below - if you
+ * come across a provider that for some reason doesn't work, feel free to open
+ * an issue on GitHub.
+ *
+ * Also, authentication scopes can be set through the `scope` property.
+ *
+ * For more information on the available providers, check out:
+ * http://passportjs.org/guide/providers/
+ */
 
+module.exports.passport = {
 
-//var bcrypt = require('bcrypt');
+  // In case you wish to turn off local authentication, simply
+  // set this to false and remove any related routes and endpoints.
+  local: true,
 
-var verifyHandler = function (token, tokenSecret, profile, done) {
-  console.log('foo');
-  process.nextTick(function () {
-
-    User.findOne({
-      or: [
-        {id: parseInt(profile.id)},
-        {id: profile.id}
-      ]
-    }).done(function (err, user) {
-      if (user) {
-        return done(null, user);
-      } else {
-
-        var data = {
-          provider: profile.provider,
-          id: profile.id,
-          name: profile.displayName
-        };
-
-        if(profile.emails && profile.emails[0] && profile.emails[0].value) {
-          data.email = profile.emails[0].value;
-        }
-        if(profile.name && profile.name.givenName) {
-          data.fistname = profile.name.givenName;
-        }
-        if(profile.name && profile.name.familyName) {
-          data.lastname = profile.name.familyName;
-        }
-
-        User.create(data).done(function (err, user) {
-          return done(err, user);
-        });
-      }
-    });
-  });
-};
-
-
-passport.serializeUser(function(user, done) {
-  done(null, user[0].id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
-
-//passport.use(new LocalStrategy(
-//  function(username, password, done) {
-//  User.findByUsername(username).done(function(err, user) {
-//    if (err) { return done(null, err); }
-//    if (!user || user.length < 1) { return done(null, false, { message: 'Incorrect User'}); }
-//    //      bcrypt.compare(password, user[0].password, function(err, res) {
-//    //        if (!res) return done(null, false, { message: 'Invalid Password'});
-//    //        return done(null, user);
-//    //      });
-//    if(password !== user[0].password) {
-//      return done(null, false, {message: 'Invalid Passport'});
-//    }
-//    return done(null, user);
-//
-//  });
-//}));
-
-module.exports = {
-  express: {
-    customMiddleware: function(app){
-      console.log('express middleware for passport');
-
-      passport.use(new FacebookStrategy({
-        clientID: "1456628884572134",
-        clientSecret: "94eba1f3201fcc6d394295e2d72e6160",
-        callbackURL: "http://localhost:1337/auth/result",
-        passReqToCallback: true
-      },
-      verifyHandler));
-
-      app.use(passport.initialize());
-      app.use(passport.session());
+  twitter: {
+    name: 'Twitter',
+    protocol: 'oauth',
+    options: {
+      consumerKey: 'your-consumer-key',
+      consumerSecret: 'your-consumer-secret'
     }
+  },
+
+  github: {
+    name: 'GitHub',
+    protocol: 'oauth2',
+    options: {
+      clientID: 'your-client-id',
+      clientSecret: 'your-client-secret'
+    }
+  },
+
+  facebook: {
+    name: 'Facebook',
+    protocol: 'oauth2',
+    options: {
+      clientID: '1456628884572134',
+      clientSecret: '94eba1f3201fcc6d394295e2d72e6160'
+    }
+  },
+
+  google: {
+    name: 'Google',
+    protocol: 'openid'
   }
+
 };

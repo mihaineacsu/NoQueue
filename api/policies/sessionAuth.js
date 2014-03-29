@@ -13,8 +13,6 @@ module.exports = function(req, res, next) {
   // or if this is the last policy, the controller
   if (req.session.authenticated) {
     return next();
-  }else{
-    return res.send(403, { message: 'Not Authorized' });
   }
 
   // User is not allowed

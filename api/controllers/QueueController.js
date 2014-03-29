@@ -5,15 +5,19 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
-var _ = require('lodash');
-
 module.exports = {
+  getAllEnqueuedUsers: function(req, res) {
+    Queue.findOne(req.param('queueid')).populate('users').exec(function(err, queue) {
+      return res.json(queue.users);
+    });
+  },
+
   addUserToQueue: function(req, res) {
     var qid, uid;
     qid = req.param('queueid');
     uid = req.param('userid');
 
-    if(qid === null || uid === null) {//TODO is this correct?
+    if(qid === undefined || uid === undefined) {//TODO is this correct?
       throw 'ids missing.';
     }
 
@@ -21,6 +25,13 @@ module.exports = {
       queue.users.add(uid);
 
       queue.save(function(err) {});
+      
+      Users.findOne(uid).exec(function(err,user) {
+        if(user.queue == undefined) user.queue = {};
+
+//TODO implement scheduling
+//        user.queue[qid] = 
+      })
 
       Queue.findOne(qid).populate('users').exec(function(err, queue) {
         res.json(queue);
@@ -34,11 +45,14 @@ module.exports = {
     qid = req.param('queueid');
     uid = req.param('userid');
 
-    if(qid === null || uid === null) {//TODO is this correct?
+    if(qid === undefined || uid === undefined) {//TODO is this correct?
       throw 'ids missing.';
     }
 
     Queue.findOne(qid).populate('users').exec(function(err, queue){
+      if(err) throw err;
+
+
       for(var i = 0; i < queue.users.length; i++) {
         if(queue.users[i].id == uid){
           return res.json(queue.users[i]);
@@ -55,7 +69,7 @@ module.exports = {
     qid = req.param('queueid');
     uid = req.param('userid');
 
-    if(qid === null || uid === null) {//TODO is this correct?
+    if(qid === undefined || uid === undefined) {//TODO is this correct?
       throw 'ids missing.';
     }
 
@@ -68,7 +82,7 @@ module.exports = {
     qid = req.param('queueid');
     uid = req.param('userid');
 
-    if(qid === null || uid === null) {//TODO is this correct?
+    if(qid === undefined || uid === undefined) {//TODO is this correct?
       throw 'ids missing.';
     }
 
