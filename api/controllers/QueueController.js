@@ -19,6 +19,10 @@ module.exports = {
 
     Queue.findOne(qid).exec(function(err,queue) {
       queue.users.add(uid);
+      User.findOne(uid).exec(function(err,user) {
+        //TODO add priority number to each user
+      });
+      queue.queued = (queue.queued + 1) || 1;
 
       queue.save(function(err) {});
 
@@ -79,6 +83,7 @@ module.exports = {
             console.log(uid);
           if(queue.users[i].id == uid){
             res.json(queue.users[i]);
+            queue.queued = queue.queued - 1;
             break;
           }
         }
